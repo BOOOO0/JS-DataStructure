@@ -44,29 +44,42 @@ export default class LinkedList {
   }
   // Add index
   Add(index, item) {
+    // indexOutOfBounds
+    if (index > this.size) {
+      return;
+    }
     let searchNode = this.head;
     let prevNode;
-    const newNode = new LinkedListNode();
-    newNode.item = item;
-    if (index === 1) {
-      newNode.next = this.head;
-      this.head = newNode;
-      this.size++;
-      return;
+    const newNode = new LinkedListNode(item);
+    if (index === 0) {
+      this.Prepend(item);
     } else {
-      let searchCount = 1;
+      let searchCount = 0;
       // 도달했을때
-      while (searchCount !== index) {
-        if (searchCount === index - 1) {
-          prevNode = searchNode;
-        }
+      // 수정) index번째 이전 노드를 찾는 조건문 말고
+      // index에 도달하면 멈추는 조건문을 가장 먼저 수행되게 해서
+      // index 이전 노드를 찾아 그 다음을 newNode로 추가한다.
+      while (searchNode) {
+        if (searchCount === index) break;
         searchNode = searchNode.next;
         searchCount++;
       }
-      prevNode.next = newNode;
-      newNode.next = searchNode;
+      if (searchNode) {
+        newNode.next = searchNode.next;
+        searchNode.next = newNode;
+      } else {
+        // 리스트의 마지막에 삽입할 때
+        if (this.tail) {
+          this.tail.next = newNode;
+          this.tail = newNode;
+        } else {
+          // 몇가지를 수정하기 위해서 참고하는데
+          // 이 부분은 어떤 상황에 대한 처리인지 모르겠다
+          this.head = newNode;
+          this.tail = newNode;
+        }
+      }
       this.size++;
-      return;
     }
   }
   // Get item
@@ -83,7 +96,7 @@ export default class LinkedList {
   // Set item
   Set(index, item) {
     let searchNode = this.head;
-    let searchCount = 1;
+    let searchCount = 0;
     while (searchCount !== index) {
       searchNode = searchNode.next;
       searchCount++;
