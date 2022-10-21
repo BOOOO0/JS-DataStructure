@@ -75,6 +75,8 @@ export default class LinkedList {
         } else {
           // 몇가지를 수정하기 위해서 참고하는데
           // 이 부분은 어떤 상황에 대한 처리인지 모르겠다
+          // 이중연결리스트를 처음부터 하면서 확인해봤는데
+          // Add로 처음부터 node를 추가할 때 (size가 0일때) 필요하다
           this.head = newNode;
           this.tail = newNode;
         }
