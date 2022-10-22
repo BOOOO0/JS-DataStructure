@@ -10,14 +10,19 @@ export default class Queue {
     this.LinkedList.Append(item);
   }
   Dequeue() {
-    this.LinkedList.Shift();
+    if (this.LinkedList.size === 0) return null;
+    return this.LinkedList.Shift();
   }
   Peek() {
+    if (this.LinkedList.size === 0) return null;
     return this.LinkedList.head.item;
   }
   // head를 반환하면서 Dequeue시키는 것의 구현이 필요
   // LinkedList 메소드 추가가 필요
-  Poll() {
-    return this.LinkedList.Shift();
+  toArray() {
+    return this.LinkedList.toArray();
+  }
+  toString() {
+    return this.LinkedList.toString();
   }
 }

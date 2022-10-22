@@ -129,11 +129,15 @@ export default class LinkedList {
     return;
   }
   // Remove head
+  // Queue 의 Poll 기능을 위해 첫번째 원소 return 해주는 것으로 수정
   Shift() {
     let oldHead = this.head;
     let newHead = this.head.next;
     this.head = newHead;
     this.size--;
+    if (this.size === 0) {
+      this.tail = null;
+    }
     return oldHead.item;
   }
   Size() {
