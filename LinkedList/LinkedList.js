@@ -122,6 +122,7 @@ export default class LinkedList {
       searchNode = searchNode.next;
       searchCount++;
     }
+
     this.tail = searchNode;
     searchNode.next = null;
     this.size--;
@@ -129,9 +130,11 @@ export default class LinkedList {
   }
   // Remove head
   Shift() {
+    let oldHead = this.head;
     let newHead = this.head.next;
     this.head = newHead;
     this.size--;
+    return oldHead.item;
   }
   Size() {
     return this.size;
