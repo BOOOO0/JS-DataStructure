@@ -27,3 +27,5 @@ List.Add(0, 1);
 List.Add(0, 2);
 List.Add(2, 3);
 console.log(List);
+
+console.log(List.Get(2));

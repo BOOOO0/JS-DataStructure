@@ -1,16 +1,17 @@
 import LinkedListNode from "./LinkedListNode.js";
-
+import Compartor from "../Comparator/Comparator.js";
 export default class LinkedList {
   // constructor
   constructor() {
     this.head = null;
     this.tail = null;
     this.size = 0;
+    this.Compartor = new Compartor();
   }
   // CRUD
 
   // Add to head
-  Prepend(item) {
+  prepend(item) {
     const newNode = new LinkedListNode(item, this.head);
     newNode.next = this.head;
     this.head = newNode;
@@ -26,7 +27,7 @@ export default class LinkedList {
     this.size++;
   }
   // Add to tail
-  Append(item) {
+  append(item) {
     // 뒤에 추가하는 방식은
     // length가 0이라면 tail은 null이기 때문에
     // null 의 next를 newNode로 지정하는 형태인 것이다
@@ -43,7 +44,7 @@ export default class LinkedList {
     this.size++;
   }
   // Add index
-  Add(index, item) {
+  add(index, item) {
     // indexOutOfBounds
     if (index > this.size) {
       return;
@@ -85,18 +86,42 @@ export default class LinkedList {
     }
   }
   // Get item
-  Get(item) {
+  // comparator 사용으로 수정
+  get(item) {
+    if (!this.head) return null;
     let searchNode = this.head;
     while (searchNode) {
-      if (searchNode.item === item) {
+      if (item !== undefined && this.Compartor.equal(searchNode.item, item)) {
         return item;
       }
       searchNode = searchNode.next;
     }
     return null;
   }
+  getNode({ item = undefined, callback = undefined }) {
+    if (!this.head) {
+      return null;
+    }
+
+    let searchNode = this.head;
+
+    while (searchNode) {
+      // 콜백 함수가 true인 node를 반환
+      if (callback && callback(searchNode.item)) {
+        return searchNode;
+      }
+      // 찾고자 하는 item을 가진 node를 반환
+      if (item !== undefined && this.compare.equal(searchNode.item, item)) {
+        return searchNode;
+      }
+
+      searchNode = searchNode.next;
+    }
+
+    return null;
+  }
   // Set item
-  Set(index, item) {
+  set(index, item) {
     let searchNode = this.head;
     let searchCount = 0;
     while (searchCount !== index) {
@@ -115,7 +140,7 @@ export default class LinkedList {
   // 우선은 size 프로퍼티를 새로 만들고
   // 삽입하거나 삭제할때 size 변화를 만들고
   // size - 1 만큼 이동한 후 searchNode의 next를 null로 하는 방법으로
-  Pop() {
+  pop() {
     let searchNode = this.head;
     let searchCount = 1;
     while (searchCount !== this.size - 1) {
@@ -130,7 +155,7 @@ export default class LinkedList {
   }
   // Remove head
   // Queue 의 Poll 기능을 위해 첫번째 원소 return 해주는 것으로 수정
-  Shift() {
+  shift() {
     let oldHead = this.head;
     let newHead = this.head.next;
     this.head = newHead;
@@ -140,7 +165,7 @@ export default class LinkedList {
     }
     return oldHead.item;
   }
-  Size() {
+  size() {
     return this.size;
   }
   // LinkedList의 내부를 알아보기 위해서

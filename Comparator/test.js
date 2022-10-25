@@ -19,9 +19,9 @@ console.log(arr);
 
 // a < b ? 1 : -1 이 된다고 생각하면 된다
 comp.reverse();
-//1
+// 1
 console.log(comp.compare(1, 2));
 
 comp.reverse();
-//-1
+// -1
 console.log(comp.compare(1, 2));
