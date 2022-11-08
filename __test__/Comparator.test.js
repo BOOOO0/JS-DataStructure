@@ -1,4 +1,4 @@
-const Comparator = require("../utils/Comparator/Comparator");
+import Comparator from "../utils/Comparator/Comparator.js";
 
 const comparator = new Comparator();
 
