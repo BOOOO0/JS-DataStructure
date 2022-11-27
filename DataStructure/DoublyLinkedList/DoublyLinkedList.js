@@ -76,6 +76,7 @@ export default class DoublyLinkedList {
     // 0일 때
     if (this.size === 0) return;
     // 1일 때
+    let shiftedItem = this.head.item;
     if (this.head == this.tail) {
       this.head = null;
       this.tail = null;
@@ -86,10 +87,14 @@ export default class DoublyLinkedList {
     }
 
     this.size--;
+
+    return shiftedItem;
   }
 
   Pop() {
     if (this.size === 0) return;
+
+    let poppedItem = this.tail.item;
 
     if (this.head == this.tail) {
       this.head = null;
@@ -101,6 +106,8 @@ export default class DoublyLinkedList {
     }
 
     this.size--;
+
+    return poppedItem;
   }
 
   Set(index, item) {
