@@ -1,5 +1,6 @@
 import LinkedListNode from "./LinkedListNode.js";
 import Compartor from "../utils/Comparator/Comparator.js";
+
 export default class LinkedList {
   // constructor
   constructor() {
@@ -98,6 +99,7 @@ export default class LinkedList {
     }
     return null;
   }
+
   getNode({ item = undefined, callback = undefined }) {
     if (!this.head) {
       return null;
@@ -165,7 +167,7 @@ export default class LinkedList {
     }
     return oldHead.item;
   }
-  size() {
+  returnSize() {
     return this.size;
   }
   // LinkedList의 내부를 알아보기 위해서
