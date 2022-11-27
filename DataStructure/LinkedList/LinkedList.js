@@ -1,5 +1,5 @@
 import LinkedListNode from "./LinkedListNode.js";
-import Compartor from "../utils/Comparator/Comparator.js";
+import Compartor from "../../utils/Comparator/Comparator.js";
 
 export default class LinkedList {
   // constructor
@@ -56,7 +56,7 @@ export default class LinkedList {
     if (index === 0) {
       this.Prepend(item);
     } else {
-      let searchCount = 0;
+      let searchCount = 1;
       // 도달했을때
       // 수정) index번째 이전 노드를 찾는 조건문 말고
       // index에 도달하면 멈추는 조건문을 가장 먼저 수행되게 해서
