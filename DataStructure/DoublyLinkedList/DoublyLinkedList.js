@@ -6,6 +6,7 @@ export default class DoublyLinkedList {
     this.tail = null;
     this.size = 0;
   }
+
   Prepend(item) {
     const newNode = new DoublyLinkedListNode(item);
     if (!this.tail) {
@@ -17,8 +18,10 @@ export default class DoublyLinkedList {
       this.head = newNode;
     }
   }
+
   Append(item) {
     const newNode = new DoublyLinkedListNode(item);
+
     if (!this.head) {
       this.tail = newNode;
       this.head = newNode;
@@ -27,12 +30,15 @@ export default class DoublyLinkedList {
       newNode.prev = this.tail;
       this.tail = newNode;
     }
+
     this.size++;
   }
+
   Add(index, item) {
     let searchNode = this.head;
-    let searchCount = 0;
+    let searchCount = 1;
     const newNode = new DoublyLinkedListNode(item);
+
     if (index === 0) {
       // 맨 앞에 삽입할 때
       this.Prepend(item);
@@ -65,6 +71,7 @@ export default class DoublyLinkedList {
     }
     this.size++;
   }
+
   Shift() {
     // 0일 때
     if (this.size === 0) return;
@@ -77,10 +84,13 @@ export default class DoublyLinkedList {
       newHead.prev = null;
       this.head = newHead;
     }
+
     this.size--;
   }
+
   Pop() {
     if (this.size === 0) return;
+
     if (this.head == this.tail) {
       this.head = null;
       this.tail = null;
@@ -89,31 +99,41 @@ export default class DoublyLinkedList {
       newTail.next = null;
       this.tail = newTail;
     }
+
     this.size--;
   }
+
   Set(index, item) {
     if (index > this.size) return;
+
     let searchNode = this.head;
     let searchCount = 0;
+
     while (searchNode) {
       if (searchCount === index) break;
       searchNode = searchNode.next;
       searchCount++;
     }
+
     searchNode.item = item;
   }
+
   Size() {
     return this.size;
   }
+
   toArray() {
     let items = [];
     let searchNode = this.head;
+
     while (searchNode) {
       items.push(searchNode.item);
       searchNode = searchNode.next;
     }
+
     return items;
   }
+
   toString() {
     return this.toArray().join(" ");
   }
