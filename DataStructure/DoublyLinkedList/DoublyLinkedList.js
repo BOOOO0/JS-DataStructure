@@ -142,6 +142,6 @@ export default class DoublyLinkedList {
   }
 
   toString() {
-    return this.toArray().join(" ");
+    return this.toArray().join(", ");
   }
 }
