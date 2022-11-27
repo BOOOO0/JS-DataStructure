@@ -113,7 +113,7 @@ export default class LinkedList {
         return searchNode;
       }
       // 찾고자 하는 item을 가진 node를 반환
-      if (item !== undefined && this.compare.equal(searchNode.item, item)) {
+      if (item !== undefined && this.Compartor.equal(searchNode.item, item)) {
         return searchNode;
       }
 
@@ -143,6 +143,10 @@ export default class LinkedList {
   // 삽입하거나 삭제할때 size 변화를 만들고
   // size - 1 만큼 이동한 후 searchNode의 next를 null로 하는 방법으로
   pop() {
+    if (this.size === 0) return;
+
+    let poppedItem = this.tail.item;
+
     let searchNode = this.head;
     let searchCount = 1;
     while (searchCount !== this.size - 1) {
@@ -153,7 +157,8 @@ export default class LinkedList {
     this.tail = searchNode;
     searchNode.next = null;
     this.size--;
-    return;
+
+    return poppedItem;
   }
   // Remove head
   // Queue 의 Poll 기능을 위해 첫번째 원소 return 해주는 것으로 수정
@@ -183,6 +188,6 @@ export default class LinkedList {
   }
   // Array를 만들고 활용하면 오히려 더 쉽게 만들 수 있었다.
   toString() {
-    return this.toArray().join(" ");
+    return this.toArray().join(", ");
   }
 }
