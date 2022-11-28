@@ -7,11 +7,11 @@ export default class Queue {
     this.LinkedList = new LinkedList();
   }
   Enqueue(item) {
-    this.LinkedList.Append(item);
+    this.LinkedList.append(item);
   }
   Dequeue() {
     if (this.LinkedList.size === 0) return null;
-    return this.LinkedList.Shift();
+    return this.LinkedList.shift();
   }
   Peek() {
     if (this.LinkedList.size === 0) return null;
