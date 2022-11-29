@@ -1,22 +1,19 @@
 import LinkedList from "../LinkedList/LinkedList.js";
-// head를 스택의 최상단 노드라고 가정한다면
-// head쪽으로 삽입하고
-// head쪽으로 나오고
-// head는 계속 최상단 노드를 업데이트하면서 가리킨다
+
 export default class Stack {
   constructor() {
     this.LinkedList = new LinkedList();
   }
   Push(item) {
-    this.LinkedList.Prepend(item);
+    this.LinkedList.append(item);
   }
   Pop() {
     if (this.LinkedList.size === 0) return null;
-    return this.LinkedList.Shift();
+    return this.LinkedList.pop();
   }
   Peek() {
     if (this.LinkedList.size === 0) return null;
-    return this.LinkedList.head.item;
+    return this.LinkedList.tail.item;
   }
   toArray() {
     return this.LinkedList.toArray();
